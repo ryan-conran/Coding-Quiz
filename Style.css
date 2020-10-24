@@ -1,0 +1,49 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.Qcontainer {
+    display: flex;
+    align-items: center;
+    margin-top: 300px;
+    background-color: white;
+    max-width: fit-content;
+    justify-content: center;
+    border-radius: 5px;
+    margin-left: 40%;
+    padding: 5px;
+    box-shadow: 0 0 10px 2px;   
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    background-color: white;
+    max-width: 25%;
+    justify-content: center;
+    border-radius: 5px;
+    margin-left: 40%;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+p {
+    float: left;
+}
+
+#AnswerResult {
+    margin-top: 10px;
+}
