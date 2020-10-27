@@ -26,7 +26,12 @@ document.getElementById("Btn1").addEventListener("click", startGame);
   //   answerPrompt.textContent = ("incorrect")
   // }
  
-nextBtn.addEventListener("click", nextQuestion)  
+nextBtn.addEventListener("click", function () {
+  currentQuestionIndex++;
+  nextQuestion();
+});
+
+console.log(nextBtn)
 
 document.getElementById("Btn2").addEventListener("click", function() {
 
@@ -83,12 +88,41 @@ let questionsText = [
         ],
         answer: "blue",
     },
+    {
+        title: "What is the capital of Minnesota",
+        options: [
+          "Albany",
+          "Burbank",
+          "Blaine",
+          "St. Paul",
+        ],
+        answer: "St. Paul",
+    },
+    {
+        title: "Example question 4",
+        options: [
+          "A",
+          "B",
+          "C",
+          "D",
+        ],
+        answer: "B",
+    },
+    {
+        title: "Example question 5",
+        options: [
+          "A",
+          "B",
+          "C",
+          "D",
+        ],
+        answer: "C",
+    },
 ]
 
 
 function nextQuestion() {
     // get current question from array
-    console.log("yellow")
     // let currentQuestion = questionsText[currentQuestionIndex];
 
     //update title question
@@ -98,14 +132,13 @@ function nextQuestion() {
     // add questions to buttons
   let answer = questionsText[currentQuestionIndex].answer
   let currentChoice = questionsText[currentQuestionIndex].options[0];
-  for (let i=0; i < questionsText.length; i++) {
     let questionEl = document.getElementById("questions-box");
-    questionEl.textContent = questionsText[i].title;
+    questionEl.textContent = questionsText[currentQuestionIndex].title;
     console.log("grey")
-    btn1EL.textContent = questionsText[i].options[0]
-    btn2EL.textContent = questionsText[i].options[1]
-    btn3EL.textContent = questionsText[i].options[2]
-    btn4EL.textContent = questionsText[i].options[3]
+    btn1EL.textContent = questionsText[currentQuestionIndex].options[0]
+    btn2EL.textContent = questionsText[currentQuestionIndex].options[1]
+    btn3EL.textContent = questionsText[currentQuestionIndex].options[2]
+    btn4EL.textContent = questionsText[currentQuestionIndex].options[3]
     if (answer === currentChoice) {
       console.log("red")
       answerPrompt.textContent = ("Correct")
@@ -114,7 +147,7 @@ function nextQuestion() {
       console.log("blue")
       answerPrompt.textContent = ("incorrect")
     }
-  }
+  
     // for (i=0; i < questionsText.length; i++) {
     //   let questionEl = document.getElementById("questions-box");
     //   questionEl.textContent = questionsText[i].title;
@@ -197,8 +230,8 @@ function setTime() {
 
 function sendMessage() {
   timeEl.textContent = "Times Up!";
-  
   document.body.appendChild(timeEl);
+  clearInterval();
 
 }
 
