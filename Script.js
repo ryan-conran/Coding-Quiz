@@ -17,17 +17,18 @@ nextBtn.addEventListener("click", function () {
 
 
 document.getElementById("Btn1").addEventListener("click", function() {
+  
 
 });
-document.getElementById("Btn2").addEventListener("click", function() {
+// document.getElementById("Btn2").addEventListener("click", function() {
 
-});
-document.getElementById("Btn3").addEventListener("click", function() {
+// });
+// document.getElementById("Btn3").addEventListener("click", function() {
 
-});
-document.getElementById("Btn4").addEventListener("click", function() {
+// });
+// document.getElementById("Btn4").addEventListener("click", function() {
 
-});
+// });
 let startButton = document.getElementById("startbtn");
 
 function startGame() {
@@ -37,9 +38,10 @@ function startGame() {
   }
 
 
-function selectAnswer() {
-    let answer = questionsText[currentQuestionIndex].answer
+function selectAnswer(event) {
+  let answer = questionsText[currentQuestionIndex].answer
   let currentChoice = questionsText[currentQuestionIndex].options[0];
+  event.preventDefault();
      if (answer === currentChoice) {
       answerPrompt.textContent = ("Correct")
     }
