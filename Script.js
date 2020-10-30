@@ -3,7 +3,7 @@ document.getElementById("startbtn").addEventListener("click", startGame);
 let answerButtonEl = document.getElementById("answerbtns");
 let currentQuestionIndex =0; 
 let askQuestion = document.getElementById("questions-box");
-let answerPrompt = document.getElementsByClassName("AnswerResult");
+let answerPrompt = document.getElementById("AnswerResult");
 let btn1EL = document.getElementById("Btn1");
 let btn2EL = document.getElementById("Btn2");
 let btn3EL = document.getElementById("Btn3");
@@ -17,18 +17,17 @@ nextBtn.addEventListener("click", function () {
 
 
 document.getElementById("Btn1").addEventListener("click", function() {
-  
-
+  selectAnswer(0)
 });
-// document.getElementById("Btn2").addEventListener("click", function() {
-
-// });
-// document.getElementById("Btn3").addEventListener("click", function() {
-
-// });
-// document.getElementById("Btn4").addEventListener("click", function() {
-
-// });
+document.getElementById("Btn2").addEventListener("click", function() {
+  selectAnswer(1)
+});
+document.getElementById("Btn3").addEventListener("click", function() {
+  selectAnswer(2)
+});
+document.getElementById("Btn4").addEventListener("click", function() {
+  selectAnswer(3)
+});
 let startButton = document.getElementById("startbtn");
 
 function startGame() {
@@ -38,77 +37,78 @@ function startGame() {
   }
 
 
-function selectAnswer(event) {
+function selectAnswer(clicked) {
   let answer = questionsText[currentQuestionIndex].answer
-  let currentChoice = questionsText[currentQuestionIndex].options[0];
-  event.preventDefault();
+  let currentChoice = questionsText[currentQuestionIndex].options[clicked];
+  console.log(answerPrompt)
      if (answer === currentChoice) {
       answerPrompt.textContent = ("Correct")
     }
     else{
       answerPrompt.textContent = ("incorrect")
+
     }
-  
+  console.log(answerPrompt)
+  console.log(answer);
+  console.log(currentChoice);
 
 }
 
 let questionsText = [
     {
-        title: "What is 2+2",
+        title: "What symbol is used for arrays?",
         options: [
-            "3",
-            "4",
-            "5",
-            "22",
+            "?",
+            "$",
+            "{}",
+            "[]",
         ],
-        answer: "4",
+        answer: "[]",
     },
     {
-        title: "what color is the sky",
+        title: "What does API stand for?",
         options: [
-            "blue",
-            "red",
-            "green",
-            "pink",
+            "Application programming interface",
+            "Asynchronous page interface",
+            "Applied page inserts",
+            "Append property input",
         ],
-        answer: "blue",
+        answer: "Application programming interface",
     },
     {
-        title: "What is the capital of Minnesota",
+        title: "Code placed in between two curly brackets is called",
         options: [
-          "Albany",
-          "Burbank",
-          "Blaine",
-          "St. Paul",
+          "Code snippet",
+          "Code bracket",
+          "Section",
+          "Insert",
         ],
-        answer: "St. Paul",
+        answer: "Code bracket",
     },
     {
-        title: "Example question 4",
+        title: "Code is uploaded to _______ to be able to be refactored",
         options: [
-          "A",
-          "B",
-          "C",
-          "D",
+          "Facebook",
+          "Visual Studio Code",
+          "Git Hub",
+          "your primary drive",
         ],
-        answer: "B",
+        answer: "Git Hub",
     },
     {
-        title: "Example question 5",
+        title: "Var can also be expressed by",
         options: [
-          "A",
-          "B",
-          "C",
-          "D",
+          "this",
+          "let",
+          "call",
+          "name",
         ],
-        answer: "C",
+        answer: "let",
     },
 ]
 
 
 function nextQuestion() {
-  let answer = questionsText[currentQuestionIndex].answer
-  let currentChoice = questionsText[currentQuestionIndex].options[0];
     let questionEl = document.getElementById("questions-box");
     questionEl.textContent = questionsText[currentQuestionIndex].title;
     console.log("grey")
@@ -117,12 +117,6 @@ function nextQuestion() {
     btn2EL.textContent = questionsText[currentQuestionIndex].options[1]
     btn3EL.textContent = questionsText[currentQuestionIndex].options[2]
     btn4EL.textContent = questionsText[currentQuestionIndex].options[3]
-    if (answer === currentChoice) {
-      answerPrompt.textContent = ("Correct")
-    }
-    else{
-      answerPrompt.textContent = ("incorrect")
-    }
 
 }
 
@@ -131,13 +125,13 @@ let secondsLeft = 180;
 
 // Create a function that will initiate the timer and the quiz.
 function setTime() {
-  let timerInterval = setInterval(function () {
+let timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = "time remaining:" + " " + secondsLeft;
 
     if (secondsLeft === 0) {
-      clearInterval();
       sendMessage();
+      clearInterval(timerInterval);
     }
   }, 1000);
 }
@@ -145,7 +139,8 @@ function setTime() {
 function sendMessage() {
   timeEl.textContent = "Times Up!";
   document.body.appendChild(timeEl);
-  clearInterval();
+  clearTimeout();
+  
 
 }
 
